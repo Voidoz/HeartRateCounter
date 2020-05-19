@@ -1,11 +1,22 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+import { StyleSheet, Text, View, Button, Alert } from 'react-native';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
+	<NavigationContainer>
+		<View style={styles.container}>
+		<Text>Heart Rate Counter!</Text>
+		<Text>An easy way to use the 15-second method to record your heart rate</Text>
+		<Button
+			onPress={onPressStart}
+			title="Start"
+			color="#841584"
+			accessibilityLabel="Press this button to start!"
+		/>
+		</View>
+	</NavigationContainer>
   );
 }
 
@@ -17,3 +28,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+function onPressStart()
+{
+	Alert.alert('Started')
+}
