@@ -78,6 +78,6 @@ const styles = StyleSheet.create({
   button: {
     fontSize: 10,
   },
-})
+})yarn 
 
 export default App;
