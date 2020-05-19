@@ -7,11 +7,11 @@ function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Heart Rate Counter!</Text>
-			<Text style={styles.description}>An easy way to use the 15-second method to record your heart rate!</Text>
+      <Text style={styles.description}>An easy way to use the 15-second method to record your heart rate!</Text>
       <Button
         title="Start"
-				onPress={() => navigation.navigate('Running')}
-				style={styles.button}
+        onPress={() => navigation.navigate('Running')}
+        style={styles.button}
       />
     </View>
   );
@@ -43,13 +43,13 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-				<Stack.Screen
-					name="Home"
-					component={HomeScreen}
-					options={{ title: 'Overview' }}
-				/>
-				<Stack.Screen name="Running" component={RunningScreen} />
-				<Stack.Screen name="Results" component={ResultsScreen} />
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{ title: 'Overview' }}
+        />
+        <Stack.Screen name="Running" component={RunningScreen} />
+        <Stack.Screen name="Results" component={ResultsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -57,22 +57,27 @@ function App() {
 
 const styles = StyleSheet.create({
   container: {
-		flex: 1,
-		alignItems: 'center',
-		justifyContent: 'center',
-		margin: 20
-	},
-	title: {
-		fontSize: 40,
-	  textAlign:'center',
-		fontWeight: 'bold',
-	},
-	description: {
-		fontSize: 20,
-	},	
-	button: {
-		fontSize: 10,
-	},
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: 20
+  },
+  title: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    justifyContent: 'center', //Centered vertically
+    alignItems: 'center', // Centered horizontally
+    flex: 1
+  },
+  description: {
+    fontSize: 20,
+    justifyContent: 'center', //Centered vertically
+    alignItems: 'center', // Centered horizontally
+    flex: 1
+  },
+  button: {
+    fontSize: 10,
+  },
 })
 
 export default App;
