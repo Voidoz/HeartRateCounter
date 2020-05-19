@@ -1,35 +1,78 @@
-import React from 'react';
-import 'react-native-gesture-handler';
+import * as React from 'react';
+import { Button, View, Text, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { StyleSheet, Text, View, Button, Alert } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-export default function App() {
+function HomeScreen({ navigation }) {
   return (
-	<NavigationContainer>
-		<View style={styles.container}>
-		<Text>Heart Rate Counter!</Text>
-		<Text>An easy way to use the 15-second method to record your heart rate</Text>
-		<Button
-			onPress={onPressStart}
-			title="Start"
-			color="#841584"
-			accessibilityLabel="Press this button to start!"
-		/>
-		</View>
-	</NavigationContainer>
+    <View style={styles.container}>
+      <Text style={styles.title}>Heart Rate Counter!</Text>
+			<Text style={styles.description}>An easy way to use the 15-second method to record your heart rate!</Text>
+      <Button
+        title="Start"
+				onPress={() => navigation.navigate('Running')}
+				style={styles.button}
+      />
+    </View>
+  );
+}
+
+function RunningScreen() {
+  return (
+    <View style={styles.container}>
+      <Text>Running Screen</Text>
+    </View>
+  );
+}
+
+function ResultsScreen({ navigation }) {
+  return (
+    <View style={styles.container}>
+      <Text>Results Screen</Text>
+      <Button
+        title="Restart"
+        onPress={() => navigation.navigate('Running')}
+      />
+    </View>
+  );
+}
+
+const Stack = createStackNavigator();
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+				<Stack.Screen
+					name="Home"
+					component={HomeScreen}
+					options={{ title: 'Overview' }}
+				/>
+				<Stack.Screen name="Running" component={RunningScreen} />
+				<Stack.Screen name="Results" component={ResultsScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+		flex: 1,
+		alignItems: 'center',
+		justifyContent: 'center',
+		margin: 20
+	},
+	title: {
+		fontSize: 40,
+	  textAlign:'center',
+		fontWeight: 'bold',
+	},
+	description: {
+		fontSize: 20,
+	},	
+	button: {
+		fontSize: 10,
+	},
+})
 
-function onPressStart()
-{
-	Alert.alert('Started')
-}
+export default App;
