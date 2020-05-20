@@ -2,7 +2,25 @@ import * as React from 'react';
 import { Button, View, Text, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
+
+// Back-End
+var timer = 15;
+var beats = 0;
+
+function reset() {
+  timer = 15;
+  beats = 0;
+}
+
+function addBeat() {
+  beats++;
+  console.log(beats);
+}
+
+
+// Front-End
 function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
@@ -20,7 +38,24 @@ function HomeScreen({ navigation }) {
 function RunningScreen() {
   return (
     <View style={styles.container}>
-      <Text>Running Screen</Text>
+      <View style={styles.container}>
+        <Text style={styles.title}>Time: {timer}</Text>
+        <Text style={styles.title}>Recorded Beats: {beats}</Text>
+        <Text style={styles.description}>Tap anywhere when you feel a pulse (except the reset button of course)</Text>
+      </View>
+      <View style={styles.beatButtonLayer}>
+        <Button
+            style={styles.beatButton}
+            title="Add Beat"
+            onPress={() => addBeat()}
+        />
+      </View>
+      <View style={styles.resetButton}>
+        <Button
+          title="Reset"
+          onPress={() => reset()}
+        />
+      </View>
     </View>
   );
 }
@@ -57,7 +92,7 @@ function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 3,
     alignItems: 'center',
     justifyContent: 'center',
     margin: 20
@@ -77,6 +112,18 @@ const styles = StyleSheet.create({
   },
   button: {
     fontSize: 10,
+  },
+  beatButtonLayer: {
+    position: "absolute",
+  },
+  beatButton: {
+    position: "absolute",
+    flex: 1,
+    width: "100%",
+    height: "100%",
+  },
+  resetButton: {
+    flex: 1,
   },
 })
 
