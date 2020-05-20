@@ -1,10 +1,12 @@
-import * as React from 'react';
+import React from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator} from '@react-navigation/stack'
+
 import HomeScreen from './components/HomeScreen';
 import RunningScreen from './components/RunningScreen';
 import ResultsScreen from './components/ResultsScreen';
+
 
 export default class App extends React.Component {
   constructor(props) {
@@ -13,17 +15,19 @@ export default class App extends React.Component {
   }
 
   reset = () => {
-    this.state.timer = 15
-    this.state.beats = 0
+    this.setState({
+      timer: 15,
+      beats: 0
+    });
   }
 
   addBeat = () => {
-    this.state.beats++;
-    console.log(this.state.beats);
-  }
+    this.setState({
+      beats: this.state.beats + 1
+    });
+  };
 
-  render () {
-    const { timer, beats } = this.state;
+  render() {
     return (
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
@@ -36,8 +40,8 @@ export default class App extends React.Component {
           <Stack.Screen name="Results" component={ResultsScreen} />
         </Stack.Navigator>
       </NavigationContainer>
-    )
-  };
+    );
+  }
 }
 
 const Stack = createStackNavigator();
