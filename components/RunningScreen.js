@@ -1,23 +1,49 @@
 import React, { Component } from 'react';
 import { Button, View, Text, StyleSheet, Dimensions, TouchableWithoutFeedback } from 'react-native';
-import App from '../App.js'
+import GLOBAL from '../global.js'
 
 
 export default class RunningScreen extends Component {
+  constructor(props) {
+    super(props);
+      GLOBAL.timer = this;
+      GLOBAL.beats = this;
+  }
+  
   render() {
     return (
-        <TouchableWithoutFeedback onPress={App.addBeat} style={styles.master}>
+        <TouchableWithoutFeedback onPress={null} style={styles.master}>
           <View style={styles.container}>
-            <Text style={styles.title}>Time: {App.state.timer}</Text>
-            <Text style={styles.title}>Recorded Beats: {App.state.beats}</Text>
+            <Text style={styles.title}>Time: {GLOBAL.timer}</Text>
+            <Text style={styles.title}>Recorded Beats: {null}</Text>
             <Text style={styles.description}>Tap anywhere when you feel a pulse (except the reset button of course)</Text>
             <Button
               title="Reset"
-              onPress={App.reset}
+              onPress={null}
             />
           </View>
         </TouchableWithoutFeedback>
       );
+  }
+
+  addBeat() {
+    GLOBAL.timer.setState({
+      var: GLOBAL.timer++
+    })
+
+    GLOBAL.beats.setState({
+      var: GLOBAL.beats++
+    })
+  };
+  
+  reset() {
+    GLOBAL.timer.setState({
+      var: 15
+    })
+
+    GLOBAL.beats.setState({
+      var: 0
+    })
   }
 }
 

@@ -9,24 +9,6 @@ import ResultsScreen from './components/ResultsScreen';
 
 
 export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { timer: 15, beats: 0};
-  }
-
-  reset = () => {
-    this.setState({
-      timer: 15,
-      beats: 0
-    });
-  }
-
-  addBeat = () => {
-    this.setState({
-      beats: this.state.beats + 1
-    });
-  };
-
   render() {
     return (
       <NavigationContainer>
