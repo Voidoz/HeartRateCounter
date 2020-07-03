@@ -3,25 +3,32 @@ import { StyleSheet, Dimensions } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator} from '@react-navigation/stack'
 
+// ! import Timer from './contexts/Timer'
+// ! import Beats from './contexts/Beats'
+
 import HomeScreen from './components/HomeScreen';
 import RunningScreen from './components/RunningScreen';
 import ResultsScreen from './components/ResultsScreen';
 
 
-export default class App extends React.Component {
+export default class App {
+  // ! const [timer, setTimer] = useState({});
+  // ! const [beats, setBeats] = useState({});
   render() {
     return (
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen
-            name="Home"
-            component={HomeScreen}
-            options={{ title: 'Overview' }}
-          />
-          <Stack.Screen name="Running" component={RunningScreen} />
-          <Stack.Screen name="Results" component={ResultsScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <Provider value={[timer, setTimer]}>
+          <NavigationContainer>
+            <Stack.Navigator initialRouteName="Home">
+              <Stack.Screen
+                name="Home"
+                component={HomeScreen}
+                options={{ title: 'Overview' }}
+              />
+              <Stack.Screen name="Running" component={RunningScreen} />
+              <Stack.Screen name="Results" component={ResultsScreen} />
+            </Stack.Navigator>
+          </NavigationContainer>
+      </Provider>
     );
   }
 }
