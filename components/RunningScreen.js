@@ -1,27 +1,13 @@
-import React, { Component, useContext } from 'react';
+import React, { Component } from 'react';
 import { Button, View, Text, StyleSheet, Dimensions, TouchableWithoutFeedback } from 'react-native';
-// ! import GLOBAL from '../global.js'
 
-const redux = require('../redux.js')
-
-// ! import Timer from '../contexts/Timer'
-// ! import Beats from '../contexts/Beats'
-
-
-export default class RunningScreen extends Component {
-  /*constructor(props) {
-    super(props);
-      GLOBAL.timer = this;
-      GLOBAL.beats = this;
-  }*/
-    // ! const [timer, setTimer] = useContext({Timer});
-    // ! const [beats, setBeats] = useContext({Beats});
+class RunningScreen extends Component {
   render() {
     return (
         <TouchableWithoutFeedback onPress={null} style={styles.master}>
           <View style={styles.container}>
-            <Text style={styles.title}>Time: {redux.Timer.subscribe(() => redux.Timer.getState)}</Text>
-            <Text style={styles.title}>Recorded Beats: {redux.Beats.subscribe(() => redux.Beats.getState)}</Text>
+            <Text style={styles.title}>Time: {null}</Text>
+            <Text style={styles.title}>Recorded Beats: {null}</Text>
             <Text style={styles.description}>Tap anywhere when you feel a pulse (except the reset button of course)</Text>
             <Button
               title="Reset"
@@ -32,26 +18,6 @@ export default class RunningScreen extends Component {
       );
     }
   }
-
-/*function addBeat() {
-  GLOBAL.timer.setState({
-    var: GLOBAL.timer++
-  })
-
-  GLOBAL.beats.setState({
-    var: GLOBAL.beats++
-  })
-};*/
-
-/*function reset() {
-  GLOBAL.timer.setState({
-    var: 15
-  })
-
-  GLOBAL.beats.setState({
-    var: 0
-  })
-}*/
 
 const styles = StyleSheet.create({
   master: {
@@ -81,3 +47,5 @@ const styles = StyleSheet.create({
     fontSize: 10,
   },
 })
+
+export default RunningScreen;

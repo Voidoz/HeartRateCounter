@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, View, Text, StyleSheet, Dimensions } from 'react-native';
 
-export default class ResultsScreen extends Component {
+class ResultsScreen extends Component {
   render() {
     return (
         <View style={styles.container}>
@@ -43,3 +43,5 @@ const styles = StyleSheet.create({
     fontSize: 10,
   },
 })
+
+export default ResultsScreen;
