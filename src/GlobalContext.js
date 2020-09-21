@@ -15,6 +15,7 @@ export class GlobalContextProvider extends React.Component {
 
   addBeat = () => {
     this.setState({ beats: this.state.beats + 1 });
+    console.log("Reset complete");
   }
 
   render () {
