@@ -1,23 +1,24 @@
 import React, { Component } from 'react';
 import { Button, View, Text, StyleSheet, Dimensions, TouchableWithoutFeedback } from 'react-native';
+import { withGlobalContext } from '../GlobalContext';
 
 class RunningScreen extends Component {
   render() {
     return (
-        <TouchableWithoutFeedback onPress={null} style={styles.master}>
-          <View style={styles.container}>
-            <Text style={styles.title}>Time: {null}</Text>
-            <Text style={styles.title}>Recorded Beats: {null}</Text>
-            <Text style={styles.description}>Tap anywhere when you feel a pulse (except the reset button of course)</Text>
-            <Button
-              title="Reset"
-              onPress={null}
-            />
-          </View>
-        </TouchableWithoutFeedback>
-      );
-    }
+      <TouchableWithoutFeedback onPress={null} style={styles.master}>
+        <View style={styles.container}>
+          <Text style={styles.title}>Time: {this.props.global.timer}</Text>
+          <Text style={styles.title}>Recorded Beats: {null}</Text>
+          <Text style={styles.description}>Tap anywhere when you feel a pulse (except the reset button of course)</Text>
+          <Button
+            title="Reset"
+            onPress={null}
+          />
+        </View>
+      </TouchableWithoutFeedback>
+    );
   }
+} 
 
 const styles = StyleSheet.create({
   master: {
@@ -48,4 +49,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default RunningScreen;
+export default withGlobalContext(RunningScreen);
