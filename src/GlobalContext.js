@@ -13,8 +13,8 @@ export class GlobalContextProvider extends React.Component {
     this.setState({ timer: 15 });
   }
 
-  switchToOffline = () => {
-    this.setState({ isOnline: false });
+  addBeat = () => {
+    this.setState({ beats: this.state.beats + 1 });
   }
 
   render () {
@@ -23,7 +23,7 @@ export class GlobalContextProvider extends React.Component {
         value={{
           ...this.state,
           resetValues: this.resetValues,
-          switchToOffline: this.switchToOffline
+          addBeat: this.addBeat
         }}
       >
         {this.props.children}

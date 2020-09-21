@@ -8,7 +8,7 @@ class RunningScreen extends Component {
       <TouchableWithoutFeedback onPress={null} style={styles.master}>
         <View style={styles.container}>
           <Text style={styles.title}>Time: {this.props.global.timer}</Text>
-          <Text style={styles.title}>Recorded Beats: {null}</Text>
+          <Text style={styles.title}>Recorded Beats: {this.props.global.beats}</Text>
           <Text style={styles.description}>Tap anywhere when you feel a pulse (except the reset button of course)</Text>
           <Button
             title="Reset"
