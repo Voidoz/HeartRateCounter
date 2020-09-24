@@ -1,19 +1,21 @@
-import React from 'react';
+import React, { Component, createContext } from 'react';
 import Heartbeats from 'heartbeats';
 
-const GlobalContext = React.createContext({});
+const GlobalContext = createContext({});
 
-export class GlobalContextProvider extends React.Component {
+export class GlobalContextProvider extends Component {
   state = {
     beats: 0,
     timer: 15,
-    running: false
+    running: false,
+    complete: false
   }
 
   resetValues = () => {
     this.setState({ beats: 0 });
     this.setState({ timer: 15 });
     this.setState({ running: false });
+    this.setState({ complete: false });
   }
 
   addBeat = () => {
@@ -22,22 +24,28 @@ export class GlobalContextProvider extends React.Component {
     }
     else if (this.state.running == false) {
       this.setState({ beats: this.state.beats + 1 });
+      
       this.setState({ running: this.state.running = true });
+
       var heart = Heartbeats.createHeart(1000);
+
       heart.createEvent(1, { countTo: 15 }, (count, last) => {
         var pulse = heart.createPulse();
+
         if (this.state.running === false) {
           heart.kill();
         } else {
           pulse.beat(this.setState({ timer: this.state.timer - 1 }));
         }
+
         console.log(last);
+
         //This project gives us access to an event called last. The last heartbeat, so the last second that will tick.
-        // if (last) {
-        //   setTimeout(() => {
-        //     //go to results screen
-        //   }, 3000)
-        // }
+        if (last) {
+          setTimeout(() => {
+            this.setState({ complete: true });
+          }, 3000)
+        }
       })
     }
   }

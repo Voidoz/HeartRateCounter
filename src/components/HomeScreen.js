@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import { Button, View, Text, StyleSheet, Dimensions } from 'react-native';
+import { withGlobalContext } from '../GlobalContext';
 
-export default class HomeScreen extends Component {
+class HomeScreen extends Component {
+  changePage = () => {
+    this.props.global.resetValues()
+    this.props.navigation.navigate('Running')
+  }
+
   render() {
     return (
         <View style={styles.container}>
@@ -9,7 +15,7 @@ export default class HomeScreen extends Component {
           <Text style={styles.description}>An easy way to use the 15-second method to record your heart rate!</Text>
           <Button
             title="Start"
-            onPress={() => this.props.navigation.navigate('Running')}
+            onPress={() => this.changePage()}
             style={styles.button}
           />
         </View>
@@ -45,3 +51,5 @@ const styles = StyleSheet.create({
     fontSize: 10,
   },
 })
+
+export default withGlobalContext(HomeScreen);

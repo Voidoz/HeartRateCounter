@@ -3,6 +3,11 @@ import { Button, View, Text, StyleSheet, Dimensions, TouchableWithoutFeedback } 
 import { withGlobalContext } from '../GlobalContext';
 
 class RunningScreen extends Component {
+  leaveRunningScreen = () => {
+    this.props.global.resetValues()
+    this.props.navigation.navigate('Results')
+  }
+
   render() {
     return (
       <TouchableWithoutFeedback onPress={() => this.props.global.addBeat()} style={styles.master}>
