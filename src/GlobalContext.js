@@ -34,8 +34,13 @@ export class GlobalContextProvider extends React.Component {
 
       heart.createEvent(1, { countTo: 15 }, (count, last) => {
         var pulse = heart.createPulse();
-        pulse.beat(this.setState({ timer: this.state.timer - 1 }));
+        if (this.state.running === false) {
+          heart.kill();
+        } else {
+          pulse.beat(this.setState({ timer: this.state.timer - 1 }));
+        }
       })
+
     }
   }
 
