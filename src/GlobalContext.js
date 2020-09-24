@@ -1,23 +1,52 @@
 import React from 'react';
+import Hearken from 'hearken';
 
 const GlobalContext = React.createContext({});
 
 export class GlobalContextProvider extends React.Component {
   state = {
     beats: 0,
-    timer: 15
+    timer: 15,
+    running: false
   }
 
   resetValues = () => {
     this.setState({ beats: 0 });
     this.setState({ timer: 15 });
+    this.setState({ running: false });
   }
 
   addBeat = () => {
-    this.setState({ beats: this.state.beats + 1 });
+    if (this.state.running == true) {
+      this.setState({ beats: this.state.beats + 1 });
+    }
+    else if (this.state.running == false) {
+      this.setState({ beats: this.state.beats + 1 });
+
+      console.log("Running State = " + this.state.running)
+
+      this.setState({ running: this.state.running = true });
+
+
+      var second = 1;
+      myTimer = () => {
+        this.setState({ timer: this.state.timer - 1 });
+        second++;
+        if (second >= 16) {
+          myStopFunction()
+        }
+      }
+
+      myStopFunction = () => {
+        clearInterval(myVar);
+        this.setState({ running: this.state.running = false });
+      }
+
+      var myVar = setInterval(myTimer, 1000);
+    }
   }
 
-  render () {
+  render() {
     return (
       <GlobalContext.Provider
         value={{
@@ -36,7 +65,7 @@ export class GlobalContextProvider extends React.Component {
 export const withGlobalContext = ChildComponent => props => (
   <GlobalContext.Consumer>
     {
-      context => <ChildComponent {...props} global={context}  />
+      context => <ChildComponent {...props} global={context} />
     }
   </GlobalContext.Consumer>
 );
