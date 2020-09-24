@@ -11,11 +11,9 @@ export class GlobalContextProvider extends React.Component {
   }
 
   resetValues = () => {
-    console.log("User hit reset");
     this.setState({ beats: 0 });
     this.setState({ timer: 15 });
     this.setState({ running: false });
-    console.log("End of reset function")
   }
 
   addBeat = () => {
@@ -24,14 +22,8 @@ export class GlobalContextProvider extends React.Component {
     }
     else if (this.state.running == false) {
       this.setState({ beats: this.state.beats + 1 });
-
-      console.log("Running State = " + this.state.running)
-
       this.setState({ running: this.state.running = true });
-      console.log("Running State = " + this.state.running)
-
       var heart = Heartbeats.createHeart(1000);
-
       heart.createEvent(1, { countTo: 15 }, (count, last) => {
         var pulse = heart.createPulse();
         if (this.state.running === false) {
@@ -40,7 +32,6 @@ export class GlobalContextProvider extends React.Component {
           pulse.beat(this.setState({ timer: this.state.timer - 1 }));
         }
       })
-
     }
   }
 
