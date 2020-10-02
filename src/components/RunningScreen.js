@@ -5,7 +5,6 @@ import { withGlobalContext } from '../GlobalContext';
 class RunningScreen extends Component {
   registerBeat = () => {
     if (this.props.global.complete == true) {
-      this.props.global.resetValues()
       this.props.navigation.navigate('Results')
     } else {
       this.props.global.addBeat()
