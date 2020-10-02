@@ -12,6 +12,8 @@ class RunningScreen extends Component {
     }
   }
 
+  componentdidMount () {this.props.global.resetValues()}
+
   render() {
     return (
       <TouchableWithoutFeedback onPress={() => this.registerBeat()} style={styles.master}>
@@ -52,9 +54,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center', //Centered vertically
     alignItems: 'center', // Centered horizontally
     flex: 1
-  },
-  button: {
-    fontSize: 10,
   },
 })
 
