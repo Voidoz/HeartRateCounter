@@ -3,14 +3,18 @@ import { Button, View, Text, StyleSheet, Dimensions, TouchableWithoutFeedback } 
 import { withGlobalContext } from '../GlobalContext';
 
 class RunningScreen extends Component {
-  leaveRunningScreen = () => {
-    this.props.global.resetValues()
-    this.props.navigation.navigate('Results')
+  registerBeat = () => {
+    if (this.props.global.complete == true) {
+      this.props.global.resetValues()
+      this.props.navigation.navigate('Results')
+    } else {
+      this.props.global.addBeat()
+    }
   }
 
   render() {
     return (
-      <TouchableWithoutFeedback onPress={() => this.props.global.addBeat()} style={styles.master}>
+      <TouchableWithoutFeedback onPress={() => this.registerBeat()} style={styles.master}>
         <View style={styles.container}>
           <Text style={styles.title}>Time: {this.props.global.timer}</Text>
           <Text style={styles.title}>Recorded Beats: {this.props.global.beats}</Text>
@@ -23,7 +27,7 @@ class RunningScreen extends Component {
       </TouchableWithoutFeedback>
     );
   }
-} 
+}
 
 const styles = StyleSheet.create({
   master: {

@@ -38,13 +38,12 @@ export class GlobalContextProvider extends Component {
           pulse.beat(this.setState({ timer: this.state.timer - 1 }));
         }
 
-        console.log(last);
+        // console.log(last);
 
         //This project gives us access to an event called last. The last heartbeat, so the last second that will tick.
         if (last) {
-          setTimeout(() => {
-            this.setState({ complete: true });
-          }, 3000)
+          this.setState({ complete: true });
+          this.setState({ timer: "Done! Tap to continue..." });
         }
       })
     }
