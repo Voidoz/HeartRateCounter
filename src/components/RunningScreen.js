@@ -46,13 +46,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     justifyContent: 'center', //Centered vertically
     alignItems: 'center', // Centered horizontally
-    flex: 1
+    flex: 1,
+    textAlign: 'center'
   },
   description: {
     fontSize: 20,
     justifyContent: 'center', //Centered vertically
     alignItems: 'center', // Centered horizontally
-    flex: 1
+    flex: 1,
+    textAlign: 'center'
   },
 })
 
