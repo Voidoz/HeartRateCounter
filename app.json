@@ -23,7 +23,6 @@
     ],
     "android": {
       "package": "com.oscarhurst.heartratecounter",
-      "versionName": "v1.0.0",
       "versionCode": 2
     }
   }
